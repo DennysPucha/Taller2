@@ -44,7 +44,13 @@ grafo = {
     '5': {},
 }
 
-G = nx.DiGraph(grafo)
+G = nx.DiGraph()
+
+for nodo in grafo:
+    G.add_node(nodo)
+    for vecino, peso in grafo[nodo].items():
+        G.add_edge(nodo, vecino, weight=peso)
+
 pos = nx.spring_layout(G)
 
 
@@ -82,9 +88,11 @@ boton_5.pack(pady=5)
 def mostrar_grafo():
     fig, ax = plt.subplots(figsize=(6,6))
     nx.draw(G, pos, with_labels=True, ax=ax)
+    edge_labels = nx.get_edge_attributes(G, 'weight')
     nx.draw_networkx_edges(G, pos, ax=ax)
-    ax.set_xlim([1.6*x for x in ax.get_xlim()])
-    ax.set_ylim([-1.5*y for y in ax.get_ylim()])
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, ax=ax)
+    ax.set_xlim([0.9*x for x in ax.get_xlim()])
+    ax.set_ylim([-1.2*y for y in ax.get_ylim()])
     plt.show()
 
 boton_grafo = tk.Button(ventana, text="Mostrar grafo", bg="#ADD8E6", fg="#000000", width=20, height=3,command=lambda: mostrar_grafo())
