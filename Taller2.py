@@ -38,7 +38,7 @@ def ruta_mas_corta_dijkstra(grafo, nodo_inicial, nodo_final):
 
 grafo = {
     '1': {'2': 100, '3': 30},
-    '2': {'3': 2},
+    '2': {'3': 20},
     '3': {'5': 60, '4': 10},
     '4': {'2': 15,'5':50},
     '5': {},
@@ -70,7 +70,7 @@ def accion_boton(number):
     print()
     label = tk.Label(ventanaMin, text=f"La ruta más corta al nodo {number} es {ruta} con distancia {distancia}")
     label.pack(pady=10)
-
+                                                                                          
 
 boton_2 = tk.Button(ventana, text="2", width=10, height=2,command=lambda: accion_boton("2"))
 boton_2.pack(pady=5)
